@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 
     $("#burguer").click(function() {
-		$("#sidenav").css("width","250px");
+		$("#sidenav").css("width","270px");
 	});
 
 	$("#btn-cerrar").click(function() {
