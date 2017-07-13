@@ -1,0 +1,27 @@
+/*
+fondo gris oscuro: #414143;
+AMARILLO: #F4B500;
+*/
+
+.inicio{
+	background-color: #414143;
+}
+
+.inicio h1{
+	color: #F4B500;
+}
+
+.btn-iniciar{
+	background-color: #F4B500;
+    color: #414143;
+    width: 100%;
+    margin-left:0;
+    margin-right:0;
+    padding: 20px 0;
+    display:block;
+    text-align:center;
+}
+
+.red{
+	color: #F4B500;
+}
