@@ -26,7 +26,7 @@ $(document).ready(function(){
 
         if(correo()){
             if(contrasena()){
-                window.open('map.html','_self',false);  
+                window.open('menu.html','_self',false);  
             }
         }
     });
@@ -60,4 +60,17 @@ $(document).ready(function(){
         }
     }
 
+
+    $("#burguer").click(function() {
+		$("#sidenav").css("width","250px");
+	});
+
+	$("#btn-cerrar").click(function() {
+		$("#sidenav").css("width","0");
+	});
 });
+
+
+
+
+
