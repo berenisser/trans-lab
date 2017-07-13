@@ -51,9 +51,6 @@ $(document).ready(function(){
 
     llamarAjax("10282608");
 
-	//Esta seccion imprime el correo electronico guardado en storage
-	var correoElec = localStorage.getItem('email'); 
-	$("#correo-storage").html(correoElec);
 });
 
 //-----------------FIN validacion correo y contraseña-------------
@@ -76,31 +73,35 @@ var llamarAjax = function(numeroTarjeta){
 	});
 }
 
+//Aqui guardo los numeros de tarjeta del usuario, guardo en local Storage e imprimo
+$(document).ready(function(){
+	//Esta seccion imprime el correo electronico guardado en storage
+	var correoElec = localStorage.getItem('email'); 
+	$("#correo-storage").html(correoElec);
 
+	//Mi variable con el arreglo debe ser global
+	var numeros = [];
 
-
-var numeros = [];
-
-$(".btn-agregar").click(function(){
-		
-			var tarjetaNum = $("#input-tarjeta").val();
-			$("#input-tarjeta").val("");
+	$(".btn-agregar").click(function(){
 			
-			if(tarjetaNum == ""){
-				return false;
-			} else{
-				//creo un arreglo al cual hago push los numeros ingresados por el usuario, 
-				//es este arreglo el que despues guardo en localStorage
-				
-			    numeros.push(tarjetaNum);
-			    console.log(numeros);
-			    localStorage.setItem("numTarjeta", JSON.stringify(numeros));
-			    console.log(localStorage.getItem("numTarjeta"));
-
-			    var numerosGuardados = localStorage.getItem("numTarjeta");
-				
-			    $("#items").append('<div class="div-numeros">'+tarjetaNum+'</div>');
-
-			}
+		var tarjetaNum = $("#input-tarjeta").val();
+		$("#input-tarjeta").val("");
 		
+		if(tarjetaNum == ""){
+			return false;
+		} else{
+			//creo un arreglo al cual hago push los numeros ingresados por el usuario, 
+			//es este arreglo el que despues guardo en localStorage con stringify
+		    numeros.push(tarjetaNum);
+		    console.log(numeros);
+		    localStorage.setItem("numTarjeta", JSON.stringify(numeros));
+		    console.log(localStorage.getItem("numTarjeta"));
+
+		    var numerosGuardados = localStorage.getItem("numTarjeta");
+			
+		    $("#items").append('<div class="div-numeros">'+tarjetaNum+'</div>');
+
+		}
+			
 	});
+});
