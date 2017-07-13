@@ -105,3 +105,62 @@ gris claro: #DCDDDF;
 .menu-margin{
 	margin-top: 160px;
 }
+
+/* **************perfil.html******************* */
+
+.foto-perfil{
+	border-radius: 50%;
+}
+
+.perfil-amarillo{
+	background-color: #F4B500;
+	padding: 20px 0;
+}
+
+.row-profile{
+	margin: 0;
+	padding: 0;
+}
+
+.correo-storage{
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 3px;
+	margin-top: 30px;
+}
+
+.contenerdor-input-tarjeta{
+	margin-top: 10px;
+}
+
+#input-tarjeta{
+	width: 100%;
+	line-height: 40px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #414143;
+	outline: none;
+	margin: 20px 15 20 15;
+}
+
+.btn-agregar{
+	background-color: #F4B500;
+    color: #fff;
+    width: 100%;
+    margin-left:0;
+    margin-right:0;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    display:block;
+    text-align:center;
+    margin-top: 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.div-numeros{
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 3px;
+	margin-bottom: 5px;
+}

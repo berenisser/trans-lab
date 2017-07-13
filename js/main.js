@@ -1,25 +1,14 @@
-var llamarAjax = function(){
-	$.ajax({
-		url: 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json?bip=123456',
-		type: 'GET',
-		dataType: 'json',
-		data: {'limit': '2'},
-	})
-	.done(function(data) {
-		console.log(data);
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
-}
-
-llamarAjax();
-
-   //Seccion Sign Up obtener Nombre y correo
 $(document).ready(function(){
+	//Seccion de abrir y cerrar sideNav
+	$("#burguer").click(function() {
+			$("#sidenav").css("width","270px");
+		});
+
+		$("#btn-cerrar").click(function() {
+			$("#sidenav").css("width","0");
+		});
+
+	//Seccion Sign Up obtener Nombre y correo
     $("#padre-btn-iniciar").on("click", $("#btn-iniciar"), function(e) {
 
         $(".red").remove();
@@ -31,7 +20,7 @@ $(document).ready(function(){
         }
     });
 
-    //validación nombre
+    //validación contraseña
     function contrasena(){
         var nameValue = $("#contrasena").val();
         console.log(nameValue);
@@ -60,17 +49,58 @@ $(document).ready(function(){
         }
     }
 
+    llamarAjax("10282608");
 
-    $("#burguer").click(function() {
-		$("#sidenav").css("width","270px");
-	});
-
-	$("#btn-cerrar").click(function() {
-		$("#sidenav").css("width","0");
-	});
+	//Esta seccion imprime el correo electronico guardado en storage
+	var correoElec = localStorage.getItem('email'); 
+	$("#correo-storage").html(correoElec);
 });
 
+//-----------------FIN validacion correo y contraseña-------------
+
+var llamarAjax = function(numeroTarjeta){
+	$.ajax({
+		url     : 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json',
+        type    : 'GET',
+        dataType: 'json',
+        data    : {'bip' : numeroTarjeta},
+	})
+	.done(function(data) {
+		console.log(data.saldoTarjeta);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+}
 
 
 
 
+var numeros = [];
+
+$(".btn-agregar").click(function(){
+		
+			var tarjetaNum = $("#input-tarjeta").val();
+			$("#input-tarjeta").val("");
+			
+			if(tarjetaNum == ""){
+				return false;
+			} else{
+				//creo un arreglo al cual hago push los numeros ingresados por el usuario, 
+				//es este arreglo el que despues guardo en localStorage
+				
+			    numeros.push(tarjetaNum);
+			    console.log(numeros);
+			    localStorage.setItem("numTarjeta", JSON.stringify(numeros));
+			    console.log(localStorage.getItem("numTarjeta"));
+
+			    var numerosGuardados = localStorage.getItem("numTarjeta");
+				
+			    $("#items").append('<div class="div-numeros">'+tarjetaNum+'</div>');
+
+			}
+		
+	});
