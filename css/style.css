@@ -178,3 +178,29 @@ gris claro: #DCDDDF;
 .cajitas{
 	margin-top: 40px;
 }
+
+/* *****************saldo.html******************* */
+
+.saldo-total{
+	background-color: #414143;
+	color: #fff;
+}
+
+.monto{
+	background-color: #F4B500;
+	padding: 15px 0;
+}
+
+#input-tarjeta2{
+	width: 100%;
+	line-height: 40px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #414143;
+	outline: none;
+	margin: 20px 15 20 15;
+}
+
+#container-saldo{
+	margin-top: 50px;
+}

@@ -49,29 +49,9 @@ $(document).ready(function(){
         }
     }
 
-    llamarAjax("10282608");
-
 });
 
 //-----------------FIN validacion correo y contraseña-------------
-
-var llamarAjax = function(numeroTarjeta){
-	$.ajax({
-		url     : 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json',
-        type    : 'GET',
-        dataType: 'json',
-        data    : {'bip' : numeroTarjeta},
-	})
-	.done(function(data) {
-		console.log(data.saldoTarjeta);
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
-}
 
 //Aqui guardo los numeros de tarjeta del usuario, guardo en local Storage e imprimo
 $(document).ready(function(){
@@ -82,7 +62,7 @@ $(document).ready(function(){
 	//Mi variable con el arreglo debe ser global
 	var numeros = [];
 
-	$(".btn-agregar").click(function(){
+	$("#btn-agregar").click(function(){
 			
 		var tarjetaNum = $("#input-tarjeta").val();
 		$("#input-tarjeta").val("");
@@ -105,3 +85,41 @@ $(document).ready(function(){
 			
 	});
 });
+
+/* *************ajax y API**************** */
+$(document).ready(function(){
+
+	$("#btn-saldo").click(function(){
+		$(".caja-saldo").remove();
+		if($("#input-tarjeta2").val() == ""){
+			$("#input-tarjeta2").val("");
+			return false;
+		} else{
+			var numeroTarj = $("#input-tarjeta2").val();
+			llamarAjax(numeroTarj);
+			$("#input-tarjeta2").val("");
+		}
+			
+	});
+
+});
+
+var llamarAjax = function(numeroTarjeta){
+	$.ajax({
+		url     : 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json',
+        type    : 'GET',
+        dataType: 'json',
+        data    : {'bip' : numeroTarjeta},
+	})
+	.done(function(data) {
+		console.log(data.saldoTarjeta);
+		$("#container-saldo").append('<div class="caja-saldo"><div class="saldo-total">SALDO TOTAL</div>'+
+			'<div class="monto">'+data.saldoTarjeta+'</div></div>');
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+}
