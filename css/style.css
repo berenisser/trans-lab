@@ -33,7 +33,7 @@ gris claro: #DCDDDF;
 
 .btn-iniciar{
 	background-color: #F4B500;
-    color: #414143;
+    color: #fff;
     width: 100%;
     margin-left:0;
     margin-right:0;
@@ -252,4 +252,14 @@ gris claro: #DCDDDF;
 
 #container-horario-costo{
 	margin-bottom: 15px;
+}
+
+#btn-calcular{
+	margin-bottom: 40px;
+}
+
+.monto{
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
 }

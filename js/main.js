@@ -174,19 +174,21 @@ $(document).ready(function(){
 			var numeroTarj = $("#input-tarjeta2").val();
 			llamarAjax(numeroTarj);
 			$("#input-tarjeta2").val("");
+			$("#select-input").val(""); 
 		}
 			
 	});
 
 	//Ahora extraigo el value de la seleccion cuando se hace click
 	$("#btn-saldo").click(function() {
+		$(".caja-saldo").remove();
 		if($("#select-input").val() == ""){
 		alert("Escoge una tarjeta");
 		return false;
 		} else {
 			console.log($("#select-input").val());
 			var numeroTarj = $("#select-input").val();
-			llamarAjax(numeroTarj);
+			llamarAjax2(numeroTarj);
 		}
 	});
 	
@@ -242,6 +244,7 @@ $(document).ready(function(){
 		} else {
 			console.log($("#select-input").val());
 			var numeroTarj = $("#select-input").val();
+			$("#select-input").val(""); 
 			calcularTarifa(numeroTarj);
 		}
 	});
@@ -260,6 +263,28 @@ var llamarAjax = function(numeroTarjeta){
 			'<div class="monto">'+data.saldoTarjeta+'</div></div>');
 	})
 	.fail(function() {
+		$("#container-saldo").append('<div class="text-center">Esta tarjeta es invalida</div>');
+		console.log("error pq ajax se esta disparando dos veces, una en el caso de click cuando se extra del input y otra cuando se extrae del select");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+}
+
+var llamarAjax2 = function(numeroTarjeta){
+	$.ajax({
+		url     : 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json',
+        type    : 'GET',
+        dataType: 'json',
+        data    : {'bip' : numeroTarjeta},
+	})
+	.done(function(data) {
+		console.log(data.saldoTarjeta);
+		$("#container-saldo").append('<div class="caja-saldo"><div class="saldo-total">SALDO TOTAL</div>'+
+			'<div class="monto">'+data.saldoTarjeta+'</div></div>');
+	})
+	.fail(function() {
+		
 		console.log("error pq ajax se esta disparando dos veces, una en el caso de click cuando se extra del input y otra cuando se extrae del select");
 	})
 	.always(function() {
