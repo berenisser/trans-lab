@@ -1,3 +1,4 @@
+//----------------- validacion correo y contraseña-------------
 $(document).ready(function(){
 	//Seccion de abrir y cerrar sideNav
 	$("#burguer").click(function() {
@@ -51,7 +52,7 @@ $(document).ready(function(){
 
 });
 
-//-----------------FIN validacion correo y contraseña-------------
+//-----------------guardamos las tarjetas ingreadas en perfil.html-------------
 
 //Aqui guardo los numeros de tarjeta del usuario, guardo en local Storage e imprimo
 $(document).ready(function(){
@@ -86,9 +87,10 @@ $(document).ready(function(){
 	});
 });
 
-/* *************ajax y API**************** */
+/* ---------------------ajax y API-saldo.html--------------------- */
 $(document).ready(function(){
 
+	//Aqui extraigo el numero de tarjeta del input regular
 	$("#btn-saldo").click(function(){
 		$(".caja-saldo").remove();
 		if($("#input-tarjeta2").val() == ""){
@@ -102,6 +104,30 @@ $(document).ready(function(){
 			
 	});
 
+	//Aqui manejo el numero de tarjeta del select---------------------
+
+	//Primero creo las opciones del select de manera dinamica trayendo value desde localStorage
+	console.log(localStorage.getItem("numTarjeta"));
+	var parseJson = JSON.parse(localStorage.getItem("numTarjeta"));
+	console.log(parseJson.length);
+	console.log(parseJson[0]);
+	var cantidadNumeros = parseJson.length;
+
+	if(cantidadNumeros == 1){
+		console.log("switch 1");
+		$("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option>');
+	} else if (cantidadNumeros == 2){
+		console.log("switch 2");
+            $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option>');
+	}else if (cantidadNumeros == 3 ){
+		console.log("switch 2");
+            $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option><option value="'+parseJson[2]+'">'+parseJson[2]+'</option>');
+	} else if (cantidadNumeros == 4 ){
+		console.log("switch 2");
+            $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option><option value="'+parseJson[2]+'">'+parseJson[2]+'</option><option value="'+parseJson[3]+'">'+parseJson[3]+'</option>');
+	}
+
+	
 });
 
 var llamarAjax = function(numeroTarjeta){
