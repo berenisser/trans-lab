@@ -120,13 +120,23 @@ $(document).ready(function(){
 		console.log("switch 2");
             $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option>');
 	}else if (cantidadNumeros == 3 ){
-		console.log("switch 2");
+		console.log("switch 3");
             $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option><option value="'+parseJson[2]+'">'+parseJson[2]+'</option>');
 	} else if (cantidadNumeros == 4 ){
-		console.log("switch 2");
+		console.log("switch 4");
             $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option><option value="'+parseJson[2]+'">'+parseJson[2]+'</option><option value="'+parseJson[3]+'">'+parseJson[3]+'</option>');
 	}
 
+	//Ahora extraigo el value de la seleccion
+	$("#btn-saldo").click(function() {
+		if($("#select-input").val() == ""){
+		alert("Escoge");
+	} else {
+		console.log($("#select-input").val());
+	}
+	});
+	
+	
 	
 });
 
