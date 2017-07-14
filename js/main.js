@@ -90,20 +90,6 @@ $(document).ready(function(){
 /* ---------------------ajax y API-saldo.html--------------------- */
 $(document).ready(function(){
 
-	//Aqui extraigo el numero de tarjeta del input regular
-	$("#btn-saldo").click(function(){
-		$(".caja-saldo").remove();
-		if($("#input-tarjeta2").val() == ""){
-			$("#input-tarjeta2").val("");
-			return false;
-		} else{
-			var numeroTarj = $("#input-tarjeta2").val();
-			llamarAjax(numeroTarj);
-			$("#input-tarjeta2").val("");
-		}
-			
-	});
-
 	//Aqui manejo el numero de tarjeta del select---------------------
 
 	//Primero creo las opciones del select de manera dinamica trayendo value desde localStorage
@@ -138,7 +124,7 @@ $(document).ready(function(){
 		$(this).hide().prev($("#select-input")).prop("disabled", false).focus();
 	});
 
-	//parte del select
+	//parte del habilitar y desabilitar SELECT
 	$("#select-input").click(function(event) {
 		$("#input-tarjetat").prop( "disabled", true );
 		$(".input-div-disable").css('display','inherit');
@@ -149,12 +135,54 @@ $(document).ready(function(){
 	});
 	// fin de seccion de habilitar y deshabilitar
 
+			/*Prueba
+			$("#btn-saldo").click(function(event){
+				event.preventDefault();
+				$(".caja-saldo").remove();
+				if($("#input-tarjeta2").val() == "" || $("#select-input").val() == ""){
+					$("#input-tarjeta2").val("");
+					$("#select-input").val("");
+					alert("Debes escoger una opcion");
+					
+				} else{
+					if($("#input-tarjeta2").val() != ""){
+						console.log("primer if");
+						var numeroTarj = $("#input-tarjeta2").val();
+						llamarAjax(numeroTarj);
+						$("#input-tarjeta2").val("");
+					} 
+
+					if($("#select-input").val() != ""){
+						console.log($("#select-input").val());
+						var numeroTarj2 = $("#select-input").val();
+						llamarAjax(numeroTarj2);
+					}
+
+				}
+					
+			}); */
+				
 	
+
+	//Aqui extraigo el numero de tarjeta del input regular
+	$("#btn-saldo").click(function(){
+		$(".caja-saldo").remove();
+		if($("#input-tarjeta2").val() == ""){
+			$("#input-tarjeta2").val("");
+			return false;
+		} else{
+			var numeroTarj = $("#input-tarjeta2").val();
+			llamarAjax(numeroTarj);
+			$("#input-tarjeta2").val("");
+		}
+			
+	});
 
 	//Ahora extraigo el value de la seleccion cuando se hace click
 	$("#btn-saldo").click(function() {
 		if($("#select-input").val() == ""){
 		alert("Escoge una tarjeta");
+		return false;
 		} else {
 			console.log($("#select-input").val());
 			var numeroTarj = $("#select-input").val();
@@ -165,6 +193,59 @@ $(document).ready(function(){
 	
 	
 });
+
+/* ------tarifa.html--------- */
+$(document).ready(function(){
+	//Desabilito el input cuando se hace seleccion, el div que tenia display none se habilita ya que los elementos que estan disabled no responden a los handlers de eventos
+	$("#input-tarjeta3").click(function(event) {
+		$("#select-input").val("");
+		$("#select-input").prop( "disabled", true );
+		$(".select-div-disable2").css('display','inherit');
+	});
+
+	$(".select-div-disable2").click(function() {
+		$(this).hide().prev($("#select-input")).prop("disabled", false).focus();
+	});
+
+	//parte del habilitar y desabilitar SELECT
+	$("#select-input").click(function(event) {
+		$("#input-tarjetat2").prop( "disabled", true );
+		$(".input-div-disable2").css('display','inherit');
+	});
+
+	$(".input-div-disable").click(function() {
+		$(this).hide().prev($("#input-tarjeta3")).prop("disabled", false).focus();
+	});
+	
+	//Aqui extraigo el numero de tarjeta del input regular
+	$("#btn-calcular").click(function(){
+		$(".caja-saldo").remove();
+
+		if($("#input-tarjeta3").val() == ""){
+			$("#input-tarjeta3").val("");
+			return false;
+		} else{
+			var numeroTarj = $("#input-tarjeta3").val();
+			calcularTarifa(numeroTarj);
+			$("#input-tarjeta3").val("");
+		}	
+			
+	});
+
+	//Ahora extraigo el value de la seleccion cuando se hace click
+	$("#btn-calcular").click(function() {
+		$(".caja-saldo").remove();
+
+		if($("#select-input").val() == ""){
+		alert("Escoge una tarjeta");
+		return false;
+		} else {
+			console.log($("#select-input").val());
+			var numeroTarj = $("#select-input").val();
+			calcularTarifa(numeroTarj);
+		}
+	});
+})
 
 var llamarAjax = function(numeroTarjeta){
 	$.ajax({
@@ -184,4 +265,42 @@ var llamarAjax = function(numeroTarjeta){
 	.always(function() {
 		console.log("complete");
 	});
+}
+
+var calcularTarifa = function(numeroTarjeta){
+	$.ajax({
+		url     : 'http://bip-servicio.herokuapp.com/api/v1/solicitudes.json',
+        type    : 'GET',
+        dataType: 'json',
+        data    : {'bip' : numeroTarjeta},
+	})
+	.done(function(data) {
+		if ($("#select-horario").val() == null){
+			alert("Debes escoger un horario");
+			$("#select-horario").focus();
+		} else{
+			var costoHorario = $("#select-horario").val();
+
+			$("#container-horario-costo").append('<div class="caja-saldo"><div class="saldo-total">COSTO PASAJE</div>'+
+				'<div class="monto">$'+costoHorario+'</div></div>');
+
+			console.log(data.saldoTarjeta);
+			var saldoAPI = data.saldoTarjeta;
+			var saldoNum = saldoAPI.slice(1, saldoAPI.length);
+			var saldoPuro = saldoNum.replace('.', '');
+			console.log(saldoPuro);
+
+			console.log("primer");
+			$("#container-tarifa").append('<div class="caja-saldo"><div class="saldo-total">SALDO TOTAL</div>'+
+				'<div class="monto">$'+(saldoPuro-costoHorario)+'</div></div>');
+		}
+		
+	})
+	.fail(function() {
+		console.log("error pq ajax se esta disparando dos veces, una en el caso de click cuando se extra del input y otra cuando se extrae del select");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+
 }

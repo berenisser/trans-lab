@@ -40,25 +40,30 @@
 		<div class="container">
 			<div class="row">
 				
-				<div class="col-sm-12 col-xs-12 contenerdor-input-tarjeta">
-					<input type="text" id="input-tarjeta2" placeholder="Número de Tarjeta">
+				<div class="col-sm-12 col-xs-12 contenerdor-input-tarjeta2">
+					<input type="text" id="input-tarjeta3" placeholder="Número de Tarjeta">
+					<div class="input-div-disable2"></div>
 				</div>
-				<div class="col-sm-6 col-xs-6 contenerdor-select-tarjeta">
+				<div class="col-sm-6 col-xs-6 contenerdor-select-horario">
 					<select class="form-control" id="select-horario">
-					  	<option selected disabled value="">Escoge una opción</option>
-					  	<option value="bajo">Horario Bajo</option>
-					  	<option value="medio">Horario Medio</option>
-					  	<option value="alto">Horario Alto</option>
+					  	<option selected disabled value="">Escoge horario</option>
+					  	<option value="640">Horario Bajo</option>
+					  	<option value="680">Horario Medio</option>
+					  	<option value="740">Horario Alto</option>
 					</select>
 				</div>
-				<div class="col-sm-6 col-xs-6 contenerdor-select-tarjeta">
+				<div class="col-sm-6 col-xs-6 contenerdor-select-tarjeta2">
 					<select class="form-control" id="select-input">
 					  	<option selected disabled value="">Escoge una opción</option>
 					  	<!-- aqui van los selects con los numeros de tarjeta -->
 					</select>
+					<div class="select-div-disable2"></div>
 				</div>
 				<div class="col-sm-12 col-xs-12 text-center">
 					<a class="btn-agregar" id="btn-calcular" href="#">CALCULAR</a>
+				</div>
+				<div class="col-sm-8 col-xs-8 col-sm-offset-2 col-xs-offset-2 text-center" id="container-horario-costo">
+					<!-- aqui va el costo por horario -->
 				</div>
 				<div class="col-sm-8 col-xs-8 col-sm-offset-2 col-xs-offset-2 text-center" id="container-tarifa">
 					<!-- aqui va el saldo -->

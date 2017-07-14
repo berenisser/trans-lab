@@ -192,7 +192,12 @@ gris claro: #DCDDDF;
 	padding: 15px 0;
 }
 
-#input-tarjeta2{
+.contenerdor-input-tarjeta2{
+	margin-bottom: 15px;
+}
+
+#input-tarjeta2,
+#input-tarjeta3{
 	width: 100%;
 	line-height: 40px;
 	background-color: transparent;
@@ -207,12 +212,16 @@ gris claro: #DCDDDF;
 }
 
 .contenerdor-select-tarjeta,
-.contenerdor-input-tarjeta{
+.contenerdor-input-tarjeta,
+.contenerdor-select-tarjeta2,
+.contenerdor-input-tarjeta2{
 	position: relative;
 }
 
 .select-div-disable,
-.input-div-disable{
+.input-div-disable,
+.select-div-disable2,
+.input-div-disable2{
 	position: absolute;
 	left:0; 
 	right:0; 
@@ -220,4 +229,8 @@ gris claro: #DCDDDF;
 	bottom:0; 
 	cursor: pointer;
 	display: none;
+}
+
+#container-horario-costo{
+	margin-bottom: 15px;
 }
