@@ -127,13 +127,39 @@ $(document).ready(function(){
             $("#select-input").append('<option value="'+parseJson[0]+'">'+parseJson[0]+'</option><option value="'+parseJson[1]+'">'+parseJson[1]+'</option><option value="'+parseJson[2]+'">'+parseJson[2]+'</option><option value="'+parseJson[3]+'">'+parseJson[3]+'</option>');
 	}
 
-	//Ahora extraigo el value de la seleccion
+	//Desabilito el input cuando se hace seleccion, el div que tenia display none se habilita ya que los elementos que estan disabled no responden a los handlers de eventos
+	$("#input-tarjeta2").click(function(event) {
+		$("#select-input").val("");
+		$("#select-input").prop( "disabled", true );
+		$(".select-div-disable").css('display','inherit');
+	});
+
+	$(".select-div-disable").click(function() {
+		$(this).hide().prev($("#select-input")).prop("disabled", false).focus();
+	});
+
+	//parte del select
+	$("#select-input").click(function(event) {
+		$("#input-tarjetat").prop( "disabled", true );
+		$(".input-div-disable").css('display','inherit');
+	});
+
+	$(".input-div-disable").click(function() {
+		$(this).hide().prev($("#input-tarjeta2")).prop("disabled", false).focus();
+	});
+	// fin de seccion de habilitar y deshabilitar
+
+	
+
+	//Ahora extraigo el value de la seleccion cuando se hace click
 	$("#btn-saldo").click(function() {
 		if($("#select-input").val() == ""){
-		alert("Escoge");
-	} else {
-		console.log($("#select-input").val());
-	}
+		alert("Escoge una tarjeta");
+		} else {
+			console.log($("#select-input").val());
+			var numeroTarj = $("#select-input").val();
+			llamarAjax(numeroTarj);
+		}
 	});
 	
 	
@@ -153,7 +179,7 @@ var llamarAjax = function(numeroTarjeta){
 			'<div class="monto">'+data.saldoTarjeta+'</div></div>');
 	})
 	.fail(function() {
-		console.log("error");
+		console.log("error pq ajax se esta disparando dos veces, una en el caso de click cuando se extra del input y otra cuando se extrae del select");
 	})
 	.always(function() {
 		console.log("complete");

@@ -205,3 +205,19 @@ gris claro: #DCDDDF;
 #container-saldo{
 	margin-top: 50px;
 }
+
+.contenerdor-select-tarjeta,
+.contenerdor-input-tarjeta{
+	position: relative;
+}
+
+.select-div-disable,
+.input-div-disable{
+	position: absolute;
+	left:0; 
+	right:0; 
+	top:0; 
+	bottom:0; 
+	cursor: pointer;
+	display: none;
+}
