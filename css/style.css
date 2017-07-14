@@ -12,6 +12,25 @@ gris claro: #DCDDDF;
 	color: #F4B500;
 }
 
+.index-first{
+	padding-top: 120px;
+}
+
+.input-lg,
+.input-group-addon {
+	border-radius: 0;
+}
+
+.inicio h1{
+	font-weight: bold;
+	font-size: 38px;
+	margin-bottom: 50px;
+}
+
+.inicio img{
+	margin-bottom: 20px;
+}
+
 .btn-iniciar{
 	background-color: #F4B500;
     color: #414143;
