@@ -47,13 +47,10 @@ $(document).ready(function(){
             return true;
         }
     }
-});
 
-//-----------------guardamos las tarjetas ingreadas en perfil.html-------------
+    //-----------------guardamos las tarjetas ingreadas en perfil.html-------------
 
-//Aqui guardo los numeros de tarjeta del usuario, guardo en local Storage e imprimo
-$(document).ready(function(){
-	//Esta seccion imprime el correo electronico guardado en storage
+    //Esta seccion imprime el correo electronico guardado en storage
 	var correoElec = localStorage.getItem('email'); 
 	$("#correo-storage").html(correoElec);
 
@@ -78,10 +75,8 @@ $(document).ready(function(){
 		    $("#items").append('<div class="div-numeros">'+tarjetaNum+'</div>');
 		}	
 	});
-});
 
-/* ---------------------ajax y API-saldo.html--------------------- */
-$(document).ready(function(){
+	/* ---------------------ajax y API-saldo.html--------------------- */
 
 	//Aqui manejo el numero de tarjeta del select---------------------
 
@@ -178,10 +173,9 @@ $(document).ready(function(){
 			llamarAjax2(numeroTarj);
 		}
 	});
-});
 
-/* ------tarifa.html--------- */
-$(document).ready(function(){
+	/* ------tarifa.html--------- */
+
 	//Desabilito el input cuando se hace seleccion, el div que tenia display none se habilita ya que los elementos que estan disabled no responden a los handlers de eventos
 	$("#input-tarjeta3").click(function(event) {
 		$("#select-input").val("");
@@ -232,7 +226,7 @@ $(document).ready(function(){
 			calcularTarifa(numeroTarj);
 		}
 	});
-})
+});
 
 var llamarAjax = function(numeroTarjeta){
 	$.ajax({
