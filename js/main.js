@@ -11,9 +11,7 @@ $(document).ready(function(){
 
 	//Seccion Sign Up obtener Nombre y correo
     $("#padre-btn-iniciar").on("click", $("#btn-iniciar"), function(e) {
-
         $(".red").remove();
-
         if(correo()){
             if(contrasena()){
                 window.open('menu.html','_self',false);  
@@ -49,7 +47,6 @@ $(document).ready(function(){
             return true;
         }
     }
-
 });
 
 //-----------------guardamos las tarjetas ingreadas en perfil.html-------------
@@ -62,9 +59,7 @@ $(document).ready(function(){
 
 	//Mi variable con el arreglo debe ser global
 	var numeros = [];
-
 	$("#btn-agregar").click(function(){
-			
 		var tarjetaNum = $("#input-tarjeta").val();
 		$("#input-tarjeta").val("");
 		
@@ -81,9 +76,7 @@ $(document).ready(function(){
 		    var numerosGuardados = localStorage.getItem("numTarjeta");
 			
 		    $("#items").append('<div class="div-numeros">'+tarjetaNum+'</div>');
-
-		}
-			
+		}	
 	});
 });
 
@@ -135,35 +128,29 @@ $(document).ready(function(){
 	});
 	// fin de seccion de habilitar y deshabilitar
 
-			/*Prueba
-			$("#btn-saldo").click(function(event){
-				event.preventDefault();
-				$(".caja-saldo").remove();
-				if($("#input-tarjeta2").val() == "" || $("#select-input").val() == ""){
-					$("#input-tarjeta2").val("");
-					$("#select-input").val("");
-					alert("Debes escoger una opcion");
-					
-				} else{
-					if($("#input-tarjeta2").val() != ""){
-						console.log("primer if");
-						var numeroTarj = $("#input-tarjeta2").val();
-						llamarAjax(numeroTarj);
-						$("#input-tarjeta2").val("");
-					} 
-
-					if($("#select-input").val() != ""){
-						console.log($("#select-input").val());
-						var numeroTarj2 = $("#select-input").val();
-						llamarAjax(numeroTarj2);
-					}
-
-				}
-					
-			}); */
+	/*Prueba
+	$("#btn-saldo").click(function(event){
+		event.preventDefault();
+		$(".caja-saldo").remove();
+		if($("#input-tarjeta2").val() == "" || $("#select-input").val() == ""){
+			$("#input-tarjeta2").val("");
+			$("#select-input").val("");
+			alert("Debes escoger una opcion");
+		} else{
+			if($("#input-tarjeta2").val() != ""){
+				console.log("primer if");
+				var numeroTarj = $("#input-tarjeta2").val();
+				llamarAjax(numeroTarj);
+				$("#input-tarjeta2").val("");
+			} 
+			if($("#select-input").val() != ""){
+				console.log($("#select-input").val());
+				var numeroTarj2 = $("#select-input").val();
+				llamarAjax(numeroTarj2);
+			}
+		}	
+	}); */
 				
-	
-
 	//Aqui extraigo el numero de tarjeta del input regular
 	$("#btn-saldo").click(function(){
 		$(".caja-saldo").remove();
@@ -191,9 +178,6 @@ $(document).ready(function(){
 			llamarAjax2(numeroTarj);
 		}
 	});
-	
-	
-	
 });
 
 /* ------tarifa.html--------- */
@@ -319,7 +303,6 @@ var calcularTarifa = function(numeroTarjeta){
 			$("#container-tarifa").append('<div class="caja-saldo"><div class="saldo-total">SALDO TOTAL</div>'+
 				'<div class="monto">$'+(saldoPuro-costoHorario)+'</div></div>');
 		}
-		
 	})
 	.fail(function() {
 		console.log("error pq ajax se esta disparando dos veces, una en el caso de click cuando se extra del input y otra cuando se extrae del select");
@@ -327,5 +310,4 @@ var calcularTarifa = function(numeroTarjeta){
 	.always(function() {
 		console.log("complete");
 	});
-
 }
